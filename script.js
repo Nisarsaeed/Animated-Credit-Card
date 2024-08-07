@@ -35,14 +35,18 @@ function getOutputElement(input) {
 
 // Function to format the card number by adding spaces every 4 digits
 function formatCardNumber(value) {
-  let cardMask = value.replace(/\D/g, "");
-  cardMask = cardMask.replace(/(.{4})/g, "$1 ");
-  let formatted = defaultValue.num.split("");
-  for (let i = 0; i < cardMask.length; i++) {
-    formatted[i] = cardMask[i]; // Replace # with the entered digit
+    let cardMask = value.replace(/\D/g, ""); 
+  
+    cardMask = cardMask.replace(/(.{4})/g, "$1 ");
+    inputCardNum.value = cardMask.trim();
+
+    let formatted = defaultValue.CardNum.split('');
+    for (let i = 0; i < cardMask.length; i++) {
+      formatted[i] = cardMask[i]; // Replace # with the entered digit
+    }
+  
+    return formatted.join('');
   }
-  return formatted.join("");
-}
 
 function formatExpiryDate(value) {
     const input = value.replace(/\D/g, ''); // Remove non-digit characters
