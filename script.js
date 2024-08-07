@@ -44,6 +44,24 @@ function formatCardNumber(value) {
   return formatted.join("");
 }
 
+function formatExpiryDate(value) {
+    const input = value.replace(/\D/g, ''); // Remove non-digit characters
+    const month = input.substring(0, 2);
+    let year = input.substring(2, 4);
+    let formatedDate;
+    if (parseInt(month) > 12) {
+        formatedDate = month.substring(0, 1);
+         
+    } else if (year) {
+        formatedDate = month + '/' + year;
+    } else {
+        return month;
+    }
+    inputExpiryDate.value = formatedDate;
+    return formatedDate;
+  }
+
+
 // Function to update the display fields with default or input values
 function displayInputValues(input) {
   const currentDisplayElement = getOutputElement(input);
@@ -54,7 +72,11 @@ function displayInputValues(input) {
   } else {
     if (input.id === "inputCardNum") {
       currentDisplayElement.innerText = formatCardNumber(input.value);
-    } else {
+    }
+    else if(input.id === "inputExpiryDate"){
+        currentDisplayElement.innerText = formatExpiryDate(input.value);
+    }
+    else {
       currentDisplayElement.innerText = input.value;
     }
   }
