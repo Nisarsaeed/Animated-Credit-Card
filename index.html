@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Animated Credit Card</title>
+  </head>
+  <body>
+    <div class="visa-card" id="card-container">
+      <div class="card-inner">
+        <div class="front">
+          <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img" />
+          <div class="row">
+            <img src="https://i.ibb.co/G9pDnYJ/chip.png" width="60px" />
+            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="60px" />
+          </div>
+          <div class="row card-no" id="dispCardNum"></div>
+          <div class="row card-holder">
+            <p>CARD HPLDER</p>
+            <p>VALID TILL</p>
+          </div>
+          <div class="row name">
+            <p id="dispHolderName">JOE ALISON</p>
+            <p id="dispExpiryDate">10 / 25</p>
+          </div>
+        </div>
+        <div class="back">
+          <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img" />
+          <div class="bar"></div>
+          <div class="row card-cvv">
+            <div>
+              <img src="https://i.ibb.co/S6JG8px/pattern.png" />
+            </div>
+            <p id="dispCVV">824</p>
+          </div>
+          <div class="row card-text">
+            <p>
+              this is a virtual card design using HTML and CSS. You can aslo
+              design something like this.
+            </p>
+          </div>
+          <div class="row signature">
+            <p>CUSTOMER SIGNATURE</p>
+            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <form>
+      <div class="group-field">
+        <label>Card Number</label>
+        <input
+          type="text"
+          id="inputCardNum"
+          pattern="[0-9]*"
+          inputmode="numeric"
+          maxlength="16"
+        />
+      </div>
+      <div class="group-field">
+        <label>Card Holder</label>
+        <input type="text" id="inputHolderName" maxlength="20" />
+      </div>
+      <div class="group-field">
+        <label>Expiration Date</label>
+        <input
+          type="month"
+          id="inputExpiryDate"
+          pattern="[0-9]*"
+          inputmode="numeric"
+        />
+      </div>
+      <div class="group-field">
+        <label>CVV</label>
+        <input
+          type="text"
+          id="inputCVV"
+          pattern="[0-9]*"
+          inputmode="numeric"
+          maxlength="3"
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <script src="./script.js"></script>
+  </body>
+</html>
