@@ -10,6 +10,14 @@ const displayCVV = document.getElementById("dispCVV");
 
 const cardContainer = document.getElementById("card-container");
 
+const defaultValue = {
+  HolderName: "John Doe",
+  CardNum: "#### #### #### ####",
+  ExpiryDate: "01/01",
+  CVV: "000",
+};
+
+// Function to get the corresponding display element
 function getOutputElement(input) {
   switch (input.id) {
     case "inputCardNum":
@@ -25,19 +33,34 @@ function getOutputElement(input) {
   }
 }
 
-function formatCardNum(input) {
-  let value = inputCardNum.value.replace(/\D/g, "");
-
-  // Add a space after every 4 digits
-  value = value.replace(/(.{4})/g, "$1 ");
-
-  // Update the input field value
-  inputCardNum.value = value.trim();
-
-  // Update the display element with the formatted value
-  displayCardNum.textContent = inputCardNum.value;
+// Function to format the card number by adding spaces every 4 digits
+function formatCardNumber(value) {
+  let cardMask = value.replace(/\D/g, "");
+  cardMask = cardMask.replace(/(.{4})/g, "$1 ");
+  let formatted = defaultValue.num.split("");
+  for (let i = 0; i < cardMask.length; i++) {
+    formatted[i] = cardMask[i]; // Replace # with the entered digit
+  }
+  return formatted.join("");
 }
 
+// Function to update the display fields with default or input values
+function displayInputValues(input) {
+  const currentDisplayElement = getOutputElement(input);
+
+  if (input.value.length === 0) {
+    currentDisplayElement.innerText =
+      defaultValue[input.id.replace("input", "")];
+  } else {
+    if (input.id === "inputCardNum") {
+      currentDisplayElement.innerText = formatCardNumber(input.value);
+    } else {
+      currentDisplayElement.innerText = input.value;
+    }
+  }
+}
+
+// Event listeners for input fields
 document.querySelectorAll("input").forEach((input) => {
   input.addEventListener("focus", () => {
     const outputField = getOutputElement(input);
@@ -65,14 +88,11 @@ document.querySelectorAll("input").forEach((input) => {
   });
 
   input.addEventListener("input", () => {
-    const outputField = getOutputElement(input);
-    formatCardNum(input);
-    if (outputField) {
-      if (input == inputCardNum) {
-        formatCardNum(input);
-      } else {
-        outputField.textContent = input.value;
-      }
-    }
+    displayInputValues(input);
   });
+});
+
+// Initial call to set default values on page load
+document.querySelectorAll("input").forEach((input) => {
+  displayInputValues(input);
 });
