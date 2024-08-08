@@ -35,21 +35,41 @@ function getOutputElement(input) {
 
 // Function to format the card number by adding spaces every 4 digits
 function formatCardNumber(value) {
-    let cardMask = value.replace(/\D/g, ""); 
+  let cardMask = value.replace(/\D/g, ""); 
   
-    cardMask = cardMask.replace(/(.{4})/g, "$1 ");
-    inputCardNum.value = cardMask.trim();
+  cardMask = cardMask.replace(/(.{4})/g, "$1 ");
+  inputCardNum.value = cardMask.trim();
 
-    let formatted = defaultValue.CardNum.split('');
-    for (let i = 0; i < cardMask.length; i++) {
-      formatted[i] = cardMask[i]; // Replace # with the entered digit
-    }
-  
-    return formatted.join('');
+  let formatted = defaultValue.CardNum.split('');
+  for (let i = 0; i < cardMask.length; i++) {
+    formatted[i] = cardMask[i]; 
+  }
+  displayCardNum.innerHTML = ""; // Clear existing content
+
+  for (let i = 0; i < formatted.length; i++) {
+    const span = document.createElement("span");
+    span.textContent = formatted[i];
+
+    // Add animation classes
+    if (value[i] && value[i] !== "#") {
+      // target only that span whose value is currently being modified
+      span.classList.add("entering");
+       setTimeout(() => {
+          span.classList.add("entered");
+       }, 0);
+    } 
+    //  span.classList.remove("entering");
+    //else {
+    //   span.classList.add("entered");
+    // }
+
+    displayCardNum.appendChild(span);
   }
 
+}
+
 function formatExpiryDate(value) {
-    const input = value.replace(/\D/g, ''); // Remove non-digit characters
+    const input = value.replace(/\D/g, ''); 
     const month = input.substring(0, 2);
     let year = input.substring(2, 4);
     let formatedDate;
@@ -75,7 +95,7 @@ function displayInputValues(input) {
       defaultValue[input.id.replace("input", "")];
   } else {
     if (input.id === "inputCardNum") {
-      currentDisplayElement.innerText = formatCardNumber(input.value);
+      formatCardNumber(input.value);
     }
     else if(input.id === "inputExpiryDate"){
         currentDisplayElement.innerText = formatExpiryDate(input.value);
@@ -117,6 +137,7 @@ document.querySelectorAll("input").forEach((input) => {
     displayInputValues(input);
   });
 });
+
 
 // Initial call to set default values on page load
 document.querySelectorAll("input").forEach((input) => {
