@@ -9,6 +9,7 @@ const displayExpiryDate = document.getElementById("dispExpiryDate");
 const displayCVV = document.getElementById("dispCVV");
 
 const cardContainer = document.getElementById("card-container");
+const borderEffect = document.getElementById("borderEffect");
 
 const defaultValue = {
   HolderName: "John Doe",
@@ -109,8 +110,14 @@ function displayInputValues(input) {
 document.querySelectorAll("input").forEach((input) => {
   input.addEventListener("focus", () => {
     const outputField = getOutputElement(input);
-    if (outputField) {
-      outputField.classList.add("active");
+    const rect = outputField.getBoundingClientRect();
+    console.log(rect,'rex')
+    if (outputField && rect) {
+      borderEffect.style.zIndex = '999'
+      borderEffect.style.left = (outputField == displayCVV)? '56vw' : `${rect.left-10}px`;
+      borderEffect.style.top = `${rect.top-10}px`;
+      borderEffect.style.width = `${rect.width+20}px`;
+      borderEffect.style.height = `${rect.height+20}px`;
     }
     if (input === inputCVV) {
       cardContainer.classList.add("negativeTransform");
@@ -122,7 +129,7 @@ document.querySelectorAll("input").forEach((input) => {
   input.addEventListener("blur", () => {
     const outputField = getOutputElement(input);
     if (outputField) {
-      outputField.classList.remove("active");
+       borderEffect.style.zIndex = '-999'
     }
     // Check if no other input is focused, then remove the class
     setTimeout(() => {
