@@ -36,7 +36,7 @@ function getOutputElement(input) {
 // Function to format the card number by adding spaces every 4 digits
 function formatCardNumber(value) {
   let cardMask = value.replace(/\D/g, ""); 
-  
+
   cardMask = cardMask.replace(/(.{4})/g, "$1 ");
   inputCardNum.value = cardMask.trim();
 
@@ -46,26 +46,25 @@ function formatCardNumber(value) {
   }
   displayCardNum.innerHTML = ""; // Clear existing content
 
-  for (let i = 0; i < formatted.length; i++) {
+  const activeIndex = inputCardNum.selectionStart - 1;
+
+for (let i = 0; i < formatted.length; i++) {
     const span = document.createElement("span");
     span.textContent = formatted[i];
-
-    // Add animation classes
-    if (value[i] && value[i] !== "#") {
-      // target only that span whose value is currently being modified
-      span.classList.add("entering");
-       setTimeout(() => {
-          span.classList.add("entered");
-       }, 0);
-    } 
-    //  span.classList.remove("entering");
-    //else {
-    //   span.classList.add("entered");
-    // }
+    span.setAttribute('id', `span-${i}`);
+    if (i === activeIndex ) {
+        span.classList.add("entering");
+          setTimeout(() => {
+              span.classList.remove("entering");
+              span.classList.add("entered");
+          }, 0);
+      }  
+       else {
+        span.classList.remove("entering");
+      }
 
     displayCardNum.appendChild(span);
-  }
-
+}
 }
 
 function formatExpiryDate(value) {
