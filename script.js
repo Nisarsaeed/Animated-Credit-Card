@@ -91,7 +91,7 @@ function displayInputValues(input) {
 
   if (input.value.length === 0) {
     currentDisplayElement.innerText =
-      defaultValue[input.id.replace("input", "")];
+      defaultValue[input.id.replace("input", "")].toUpperCase();
   } else {
     if (input.id === "inputCardNum") {
       formatCardNumber(input.value);
@@ -100,7 +100,7 @@ function displayInputValues(input) {
         currentDisplayElement.innerText = formatExpiryDate(input.value);
     }
     else {
-      currentDisplayElement.innerText = input.value;
+      currentDisplayElement.innerText = input.value.toUpperCase();
     }
   }
 }
