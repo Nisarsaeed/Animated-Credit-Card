@@ -25,7 +25,7 @@ body{
 
 .visa-card {
     width: 400px;
-    height: 250px;
+    height: 230px;
     color: #fff;
     cursor: pointer;
     perspective: 1000px;
@@ -73,18 +73,19 @@ body{
 }
 
 .card-no {
-    font-size: 30px;
-    margin-top: 30px;
+    font-size: 27px;
+    margin-top: 20px;
+    letter-spacing: 3px;
 }
 
 .card-holder {
     font-size: 12px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .name {
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .bar {
@@ -138,12 +139,12 @@ form{
     width: 500px;
     display: flex;  
     flex-direction: column;
-    padding: 7rem 2rem 2rem 2rem;
+    padding: 10rem 2rem 2rem 2rem;
     border: 1px solid;
     position: relative;
     margin-top: 5rem;
     background-color: whitesmoke;
-    border-radius: 1rem;
+    border-radius: 5px;
 }
 .group-field{
      margin-top: 1rem;
@@ -156,9 +157,13 @@ label{
 }
 form input{
     padding: 10px 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
+    border: 0.5px solid rgb(188, 187, 187);
+}
+form input:focus{
+    outline: #051275 solid 1px;
 }
 form > button{
     margin-top: 1.5rem ;
@@ -166,8 +171,12 @@ form > button{
     font-size: large;
     font-weight: bold;
     background-color: rgb(47, 59, 229);
+    border-radius: 1rem;
     color: #fff;
+    border: none;
+    cursor: pointer;
 }
+
 .active{
     border: 1px solid white;
     padding: 5px 5px;
